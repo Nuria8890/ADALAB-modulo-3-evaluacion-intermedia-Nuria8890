@@ -6,15 +6,37 @@ import { useState } from "react";
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
+  const [selectValue, setSelectValue] = useState("Seleciona");
 
   const changeSearch = (value) => {
     setSearchValue(value);
   };
 
+  const changeSelect = (value) => {
+    setSelectValue(value);
+  };
+
   const countriesFiltered = countriesData.filter((countryData) => {
-    return countryData.name.common
-      .toLowerCase()
-      .includes(searchValue.toLowerCase());
+    if (selectValue === "Seleciona" && searchValue == "") {
+      return true;
+    } else {
+      return (
+        countryData.name.common
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()) ||
+        countryData.continents.includes(selectValue)
+      );
+    }
+  });
+
+  const continents = countriesData.map((countryData) => {
+    // console.log("countryData", countryData);
+    // console.log("countryData.continents", countryData.continents);
+    return countryData.continents[0];
+  });
+
+  const continents5 = continents.filter((valor, indice, self) => {
+    return self.indexOf(valor) === indice;
   });
 
   return (
@@ -22,7 +44,11 @@ function App() {
       <header className="header" id="header">
         <h1 className="header__title">Country Info App</h1>
       </header>
-      <Filters changeSearch={changeSearch} />
+      <Filters
+        changeSearch={changeSearch}
+        continents={continents5}
+        changeSelect={changeSelect}
+      />
       <ListCountries countriesData={countriesFiltered} />
     </>
   );
