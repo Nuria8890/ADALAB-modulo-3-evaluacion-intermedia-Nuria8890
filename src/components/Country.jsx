@@ -1,8 +1,6 @@
 import PropTypes from "prop-types";
 
 function Country({ countriesData }) {
-  console.log(countriesData);
-
   return (
     <li>
       <p>{countriesData.flag}</p>
