@@ -19,11 +19,17 @@ function App() {
   const countriesFiltered = countriesData.filter((countryData) => {
     if (selectValue === "Seleciona" && searchValue == "") {
       return true;
-    } else {
+    } else if (selectValue === "Seleciona" && searchValue !== "") {
+      return countryData.name.common
+        .toLowerCase()
+        .includes(searchValue.toLowerCase());
+    } else if (selectValue !== "Seleciona" && searchValue == "") {
+      return countryData.continents.includes(selectValue);
+    } else if (selectValue !== "Seleciona" && searchValue !== "") {
       return (
         countryData.name.common
           .toLowerCase()
-          .includes(searchValue.toLowerCase()) ||
+          .includes(searchValue.toLowerCase()) &&
         countryData.continents.includes(selectValue)
       );
     }
