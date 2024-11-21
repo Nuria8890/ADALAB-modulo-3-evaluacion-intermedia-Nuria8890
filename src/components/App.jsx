@@ -4,6 +4,28 @@ import ListCountries from "./ListCountries";
 import Filters from "./Filters";
 import { useState } from "react";
 
+/*
+1. Pintar el listado de países:
+  - Por cada país de la lista,
+    - pinto el país en el html
+*/
+
+/*
+2. Filtrar por el nombre del país
+  - Cuando la usuaria escriba en el input,
+    - recojo el valor del input
+    - filtro la lista de países (que lo que escribe la usuaria esté incluido en el nombre del país)
+    - pintar la lista de países filtrados
+*/
+
+/*
+2. Filtrar por el nombre del continente
+  - Cuando la usuaria seleccione una opción,
+    - recojo la opción selecionada
+    - filtro la lista de países (que lo que la usuaria ha seleccionado sea igual al continente del país)
+    - pintar la lista de países filtrados
+*/
+
 function App() {
   const [searchValue, setSearchValue] = useState("");
   const [selectValue, setSelectValue] = useState("Seleciona");
@@ -15,7 +37,16 @@ function App() {
   const changeSelect = (value) => {
     setSelectValue(value);
   };
+  /*Otra forma de hacer el doble filtrado:
 
+const countriesFiltered = countriesData
+  .filter((country) => {
+    return country.name.common.toLowerCase().includes(filterNAme.toLowerCase())
+  })
+  .filter((country)=> {
+    return filterContinent === "Seleciona" ? true : country.continents[0] === filterContinent
+  })
+*/
   const countriesFiltered = countriesData.filter((countryData) => {
     if (selectValue === "Seleciona" && searchValue == "") {
       return true;
@@ -47,15 +78,17 @@ function App() {
 
   return (
     <>
-      <header className="header" id="header">
-        <h1 className="header__title">Country Info App</h1>
+      <header>
+        <h1>Country Info App</h1>
       </header>
-      <Filters
-        changeSearch={changeSearch}
-        continents={continents5}
-        changeSelect={changeSelect}
-      />
-      <ListCountries countriesData={countriesFiltered} />
+      <main>
+        <Filters
+          changeSearch={changeSearch}
+          continents={continents5}
+          changeSelect={changeSelect}
+        />
+        <ListCountries countriesData={countriesFiltered} />
+      </main>
     </>
   );
 }

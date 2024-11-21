@@ -19,7 +19,13 @@ function Filters({ changeSearch, continents, changeSelect }) {
   return (
     <form>
       <label htmlFor="search">Busca un país </label>
-      <input type="text" id="search" onChange={handleChange} />
+      <input
+        type="text"
+        id="search"
+        onChange={handleChange}
+        name="search"
+        placeholder="Spain"
+      />
 
       <label htmlFor="searchCountries">Selecciona un continente </label>
       <select
