@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Country from "./Country";
+import "../styles/layout/ListCountries.scss";
 
 function ListCountries({ countriesData }) {
   const countriesItems = countriesData.map((countryItem, index) => {
@@ -9,14 +10,14 @@ function ListCountries({ countriesData }) {
   });
 
   return (
-    <div>
-      <ul>{countriesItems}</ul>
-    </div>
+    <>
+      <ul className="containerList">{countriesItems}</ul>
+    </>
   );
 }
 
 export default ListCountries;
 
-ListCountries.prototype = {
+ListCountries.propTypes = {
   countriesData: PropTypes.array.isRequired,
 };

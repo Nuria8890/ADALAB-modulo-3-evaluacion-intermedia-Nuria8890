@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
+import "../styles/layout/Country.scss";
 
 function Country({ countriesData }) {
   return (
-    <li>
+    <li className="list">
       <p>{countriesData.flag}</p>
       <p>Nombre: {countriesData.name.common}</p>
       <p>Capital: {countriesData.capital[0]}</p>
@@ -12,6 +13,6 @@ function Country({ countriesData }) {
 }
 
 export default Country;
-Country.prototype = {
+Country.propTypes = {
   countriesData: PropTypes.object.isRequired,
 };

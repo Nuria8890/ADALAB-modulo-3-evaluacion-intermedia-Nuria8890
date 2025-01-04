@@ -1,0 +1,10 @@
+.list {
+  border: solid 1px black;
+  width: fit-content;
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
